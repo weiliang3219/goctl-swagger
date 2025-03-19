@@ -353,7 +353,8 @@ func renderStruct(member spec.Member) swaggerParameterObject {
 		format = "UNKNOWN"
 	}
 	sp := swaggerParameterObject{In: "query", Type: ftype, Format: format}
-
+	sp.Schema = &swaggerSchemaObject{}
+	
 	for _, tag := range member.Tags() {
 		if tag.Key == validateKey {
 			continue
