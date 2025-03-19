@@ -102,7 +102,7 @@ func applyGenerate(p *plugin.Plugin, host string, basePath string, schemes strin
 	newSecDefValue.In = "header"
 	s.SecurityDefinitions["apiKey"] = newSecDefValue
 
-	// s.Security = append(s.Security, swaggerSecurityRequirementObject{"apiKey": []string{}})
+	s.Security = append(s.Security, swaggerSecurityRequirementObject{"apiKey": []string{}})
 
 	requestResponseRefs := refMap{}
 	renderServiceRoutes(p.Api.Service, p.Api.Service.Groups, s.Paths, requestResponseRefs)
@@ -354,7 +354,7 @@ func renderStruct(member spec.Member) swaggerParameterObject {
 	}
 	sp := swaggerParameterObject{In: "query", Type: ftype, Format: format}
 	sp.Schema = &swaggerSchemaObject{}
-	
+
 	for _, tag := range member.Tags() {
 		if tag.Key == validateKey {
 			continue
